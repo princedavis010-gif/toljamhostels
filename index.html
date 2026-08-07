@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOLJAM HOSTELS NIGERIA LTD. | Student Accommodation</title>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1b365d;   /* Deep Navy Blue */
+            --secondary: #e0a96d; /* Warm Gold */
+            --dark: #222222;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* --- Header & Dropdown Navbar --- */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Dropdown CSS */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            border-radius: 6px;
+            list-style: none;
+            min-width: 180px;
+            padding: 0.5rem 0;
+            z-index: 1100;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.6rem 1.2rem;
+            color: var(--dark);
+            font-size: 0.95rem;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: var(--light);
+            color: var(--secondary);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .btn-nav {
+            background-color: var(--primary);
+            color: var(--white) !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(27, 54, 93, 0.85), rgba(27, 54, 93, 0.85)), 
+                        url('https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat;
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #e2e8f0;
+        }
+
+        .cta-btn {
+            background-color: var(--secondary);
+            color: var(--dark);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .cta-btn:hover {
+            background-color: #d09455;
+            transform: translateY(-2px);
+        }
+
+        /* --- Container & Titles --- */
+        .container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin: 0.5rem auto 0;
+        }
+
+        /* --- Interactive About / Mission & Vision Section --- */
+        .about-section {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 3rem 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Tab Buttons Navigation */
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #718096;
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 10px rgba(27, 54, 93, 0.3);
+        }
+
+        .tab-btn:hover:not(.active) {
+            color: var(--secondary);
+        }
+
+        /* Tab Content Panel */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Inner Content Styling */
+        .info-box {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .info-box h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-box p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        /* Interactive Core Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .value-card {
+            background-color: var(--light);
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            background-color: #ffffff;
+        }
+
+        .value-card h4 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* --- Room Locations Grid --- */
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .location-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .location-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .location-body {
+            padding: 1.8rem;
+        }
+
+        .location-body h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .location-body p {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Mshel-Style Footer & Contact Banner --- */
+        .contact-callout {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            background-color: var(--light);
+        }
+
+        .contact-callout h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #11233f 0%, #1b365d 100%);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            font-size: 1.5rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            color: var(--dark);
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.6rem;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* --- Floating WhatsApp Button --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 32px;
+            box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            color: var(--white);
+            box-shadow: 2px 8px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        @media (max-width: 900px) {
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">TOLJAM <span>HOSTELS</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                
+                <!-- Dropdown Menu for Rooms -->
+                <li class="dropdown">
+                    <a href="#locations" style="color: var(--secondary); font-weight: 700;">Rooms ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="perfection.html">Perfection Area</a></li>
+                        <li><a href="oke-ola.html">Oke Ola Area</a></li>
+                        <li><a href="yewa.html">Yewa Area</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="https://gwugmie.s.gy/toljam_hostels" target="_blank" class="btn-nav">Book Room</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>TOLJAM HOSTELS NIGERIA LTD.</h1>
+            <p>Your premier destination for secure, comfortable, and affordable student & youth housing in Nigeria.</p>
+            <a href="#locations" class="cta-btn">View All Locations</a>
+        </div>
+    </section>
+
+    <!-- Interactive Mission, Vision & Values Section -->
+    <section class="container" id="about">
+        <h2 class="section-title">Who We Are</h2>
+        
+        <div class="about-section">
+            <!-- Interactive Tabs Menu -->
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab('mission', this)">Our Mission</button>
+                <button class="tab-btn" onclick="switchTab('vision', this)">Our Vision</button>
+                <button class="tab-btn" onclick="switchTab('values', this)">Our Core Values</button>
+            </div>
+
+            <!-- Tab 1: Mission -->
+            <div id="mission" class="tab-content active">
+                <div class="info-box">
+                    <h3>Empowering Through Premium Accommodation</h3>
+                    <p>
+                        Our mission is to redefine student and youth living in Nigeria by delivering safe, modern, and tech-enabled accommodation environments. We empower residents to excel academically and socially by providing seamless utility services, unmatched security, and communities that feel like home.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tab 2: Vision -->
+            <div id="vision" class="tab-content">
+                <div class="info-box">
+                    <h3>Setting the Standard for African Youth Housing</h3>
+                    <p>
+                        Our vision is to become the leading standard and most trusted brand in student real estate and hospitality across West Africa, continually innovating living spaces that foster academic focus, safety, personal development, and community building.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tab 3: Core Values -->
+            <div id="values" class="tab-content">
+                <div class="info-box" style="max-width: 1000px;">
+                    <h3>The Pillars That Drive Us</h3>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <h4>🛡️ Safety First</h4>
+                            <p>Prioritizing 24/7 security measures and peace of mind for every student and parent.</p>
+                        </div>
+                        <div class="value-card">
+                            <h4>⭐ Excellence</h4>
+                            <p>Providing top-tier infrastructure, clean environments, and proactive facility management.</p>
+                        </div>
+                        <div class="value-card">
+                            <h4>🤝 Integrity</h4>
+                            <p>Maintaining honest communication, transparent bookings, and reliable tenant relations.</p>
+                        </div>
+                        <div class="value-card">
+                            <h4>💡 Innovation</h4>
+                            <p>Modernizing student living spaces through smart technology and modern amenities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hostel Locations Showcase Section -->
+    <section class="container" id="locations">
+        <h2 class="section-title">Our Accommodation Areas</h2>
+        <div class="locations-grid">
+            
+            <!-- Perfection Area Card -->
+            <div class="location-card">
+                <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=80&w=600" class="location-img" alt="Perfection Area">
+                <div class="location-body">
+                    <h3>Perfection Area ⭐</h3>
+                    <p>Our premier flagship residency. Features full air conditioning, modern contemporary architecture, and elite private suites.</p>
+                    <a href="perfection.html" class="cta-btn" style="width: 100%; text-align: center;">Explore Perfection Area</a>
+                </div>
+            </div>
+
+            <!-- Oke Ola Area Card -->
+            <div class="location-card">
+                <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=600" class="location-img" alt="Oke Ola Area">
+                <div class="location-body">
+                    <h3>Oke Ola Area 🌿</h3>
+                    <p>Located in a calm, peaceful environment ideal for intensive study and relaxed community living.</p>
+                    <a href="oke-ola.html" class="cta-btn" style="width: 100%; text-align: center;">Explore Oke Ola Area</a>
+                </div>
+            </div>
+
+            <!-- Yewa Area Card -->
+            <div class="location-card">
+                <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80&w=600" class="location-img" alt="Yewa Area">
+                <div class="location-body">
+                    <h3>Yewa Area 🏢</h3>
+                    <p>Centrally positioned close to main campus gates, offering convenient access to commercial hubs and student activities.</p>
+                    <a href="yewa.html" class="cta-btn" style="width: 100%; text-align: center;">Explore Yewa Area</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Still Have Questions Callout Section -->
+    <div class="contact-callout">
+        <h3>Still have questions?</h3>
+        <a href="https://wa.me/2348055915487?text=Hello%2C%20I%20am%20interested%20in%20learning%20more%20about%20Toljam%20Hostels%20Nigeria%20LTD.%20Please%20assist%20me." target="_blank" class="cta-btn">Contact Us</a>
+    </div>
+
+    <!-- Mshel Style Footer -->
+    <footer>
+        <div class="footer-container">
+            <!-- Brand & Description Col -->
+            <div class="footer-brand">
+                <a href="index.html" class="logo">TOLJAM <span>HOSTELS</span></a>
+                <p>Excellence in student hostels and commercial real estate - seamless accommodation management, elevated returns.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="#about">About Us</a>
+                <a href="perfection.html">Perfection Area</a>
+                <a href="oke-ola.html">Oke Ola Area</a>
+                <a href="yewa.html">Yewa Area</a>
+            </div>
+
+            <!-- Email Col -->
+            <div class="footer-col">
+                <h4>Email</h4>
+                <a href="mailto:toljam2010@gmail.com">toljam2010@gmail.com</a>
+            </div>
+
+            <!-- Phone Col -->
+            <div class="footer-col">
+                <h4>Phone</h4>
+                <a href="tel:+2347030466586">+234-703-046-6586</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="year"></span> TOLJAM HOSTELS NIGERIA LTD. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/2348055915487?text=Hello%2C%20I%20am%20interested%20in%20learning%20more%20about%20Toljam%20Hostels%20Nigeria%20LTD.%20Please%20assist%20me." 
+       class="whatsapp-float" 
+       target="_blank" 
+       aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Interactive Scripts -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function switchTab(tabId, element) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Deactivate all tab buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Activate selected tab content and button
+            document.getElementById(tabId).classList.add('active');
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>
